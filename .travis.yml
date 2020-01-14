@@ -16,7 +16,7 @@ after_success:
   # Log into the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker
-  - docker push amitabc75/multi-client
   - docker push amitabc75/multi-nginx
+  - docker push amitabc75/multi-client
   - docker push amitabc75/multi-server
   - docker push amitabc75/multi-worker
