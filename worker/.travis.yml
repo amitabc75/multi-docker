@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t amitabc75/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true amitabc75/react-test npm test
+
+after_success:
+  - docker build -t amitabc75/multi-client ./client
+  - docker build -t amitabc75/multi-nginx ./ngnix
+  - docker build -t amitabc75/multi-server ./server
+  - docker build -t amitabc75/multi-worker ./worker
+
+  # login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
+  # take those images and push them to docker hub
+  - dicker push amitabc75/multi-client
+  - dicker push amitabc75/multi-nginx
+  - dicker push amitabc75/multi-server
+  - dicker push amitabc75/multi-worker
