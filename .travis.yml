@@ -9,7 +9,7 @@ script:
   - docker run -e CI=true amitabc75/react-test npm test
 
 after_success:
-  - docker build -t amitabc75/multi-aclient ./client
+  - docker build -t amitabc75/multi-client ./client
   - docker build -t amitabc75/multi-nginx ./nginx
   - docker build -t amitabc75/multi-server ./server
   - docker build -t amitabc75/multi-worker ./worker
@@ -17,6 +17,6 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker
   - docker push amitabc75/multi-nginx
-  - docker push amitabc75/multi-aclient
+  - docker push amitabc75/multi-client
   - docker push amitabc75/multi-server
   - docker push amitabc75/multi-worker
