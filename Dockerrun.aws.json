@@ -10,7 +10,7 @@
     },
     {
       "name": "server",
-      "imgage": "amitabc75/multi-server",
+      "image": "amitabc75/multi-server",
       "hostname": "api",
       "essential": false,
       "memory": 128
